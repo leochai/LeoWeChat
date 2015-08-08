@@ -12,8 +12,9 @@ import java.net.InetAddress;
  */
 public class udpListen extends Thread {
 
+    public static int DATALEN = 2048;
     Handler uiHandler;
-    byte[] data = new byte[2048];
+    byte[] data = new byte[DATALEN];
     DatagramSocket ds;
 
     public udpListen(Handler handler) {
@@ -23,7 +24,7 @@ public class udpListen extends Thread {
     public void run() {
         try {
             ds = new DatagramSocket(30001);
-            DatagramPacket dp = new DatagramPacket(data, 2048);
+            DatagramPacket dp = new DatagramPacket(data, DATALEN);
 
             while (true) {
                 ds.receive(dp);
@@ -31,8 +32,12 @@ public class udpListen extends Thread {
 
                 msg.what = 0x222;
 
-                msg.obj = new String(data);
+                msg.obj = new String(data, "gbk");
                 uiHandler.sendMessage(msg);
+
+                for (int i = 0; i < DATALEN; i++) {
+                    data[i] = 0;
+                }
 
             }
         } catch (Exception e) {

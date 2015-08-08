@@ -48,7 +48,7 @@ public class LeoWeChat extends AppCompatActivity {
 
                     ChatMsgEntity entity = new ChatMsgEntity();
                     entity.setDate(getDate());
-                    entity.setName("小柴柴");
+                    entity.setName("小欣欣");
                     entity.setMsgType(true);
                     entity.setMessage(strCome);
 

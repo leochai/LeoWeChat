@@ -26,9 +26,9 @@ public class udpSend extends Thread {
             public void handleMessage(Message msg) {
                 if (msg.what == 0x111) {
                     try {
-                        InetAddress ip = InetAddress.getByName("192.168.1.103");
-                        ds = new DatagramSocket(30000, InetAddress.getByName("192.168.1.102"));
-                        DatagramPacket dp = new DatagramPacket(msg.obj.toString().getBytes(), msg.obj.toString().length(), ip, 30001);
+                        InetAddress ip = InetAddress.getByName("192.168.1.106");
+                        ds = new DatagramSocket(30000, InetAddress.getByName("192.168.1.103"));
+                        DatagramPacket dp = new DatagramPacket(msg.obj.toString().getBytes("gbk"), msg.obj.toString().length() * 2, ip, 30001);
                         ds.send(dp);
                         ds.close();
                     } catch (Exception e) {
