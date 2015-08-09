@@ -26,9 +26,10 @@ public class udpSend extends Thread {
             public void handleMessage(Message msg) {
                 if (msg.what == 0x111) {
                     try {
-                        InetAddress ip = InetAddress.getByName("192.168.1.106");
+                        InetAddress ip = InetAddress.getByName("192.168.1.102");  //对方的ip地址
                         ds = new DatagramSocket(30000, InetAddress.getByName("192.168.1.103"));
-                        DatagramPacket dp = new DatagramPacket(msg.obj.toString().getBytes("gbk"), msg.obj.toString().length() * 2, ip, 30001);
+                        int Blen = msg.obj.toString().getBytes("utf-8").length;  //字节数
+                        DatagramPacket dp = new DatagramPacket(msg.obj.toString().getBytes("utf-8"), Blen, ip, 30001);
                         ds.send(dp);
                         ds.close();
                     } catch (Exception e) {

@@ -32,7 +32,7 @@ public class udpListen extends Thread {
 
                 msg.what = 0x222;
 
-                msg.obj = new String(data, "gbk");
+                msg.obj = new String(data, "utf-8");
                 uiHandler.sendMessage(msg);
 
                 for (int i = 0; i < DATALEN; i++) {
